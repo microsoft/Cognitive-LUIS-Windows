@@ -1,0 +1,1 @@
+nuget pack LUISClientLibrary.csproj -Build -OutputDirectory bin\release -Properties Configuration=Release;Platform=AnyCPU
