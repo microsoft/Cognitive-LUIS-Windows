@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LUISAPI-WPF-Sample", "Sample\LUISAPI-WPF-Sample.csproj", "{F04E2A65-FDC9-45D0-A85E-C243D3D6ACD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUserControlLibrary", "..\Cognitive-Common-Windows-master\Cognitive-Common-Windows-master\SampleUserControlLibrary\SampleUserControlLibrary.csproj", "{735929F0-F8F1-4D93-B027-5D034FA7892B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUserControlLibrary", "..\Cognitive-Common-Windows\SampleUserControlLibrary\SampleUserControlLibrary.csproj", "{735929F0-F8F1-4D93-B027-5D034FA7892B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

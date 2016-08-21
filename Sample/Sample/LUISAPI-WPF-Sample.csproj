@@ -112,7 +112,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cognitive-Common-Windows-master\Cognitive-Common-Windows-master\SampleUserControlLibrary\SampleUserControlLibrary.csproj">
+    <ProjectReference Include="..\..\Cognitive-Common-Windows\SampleUserControlLibrary\SampleUserControlLibrary.csproj">
       <Project>{735929f0-f8f1-4d93-b027-5d034fa7892b}</Project>
       <Name>SampleUserControlLibrary</Name>
     </ProjectReference>
