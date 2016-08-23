@@ -14,10 +14,11 @@ The SDK can be used in 2 different ways (both are shown in the sample).
 
 Sample Application
 --------------
-The sample application has 3 functions, each can be run seperately as an individual program. 
-- *RunDialogExample()* runs an example using the Dialogue
-- *RunPredictionExample()* runs an example for a simple prediction
-- *RunRouterExample()* runs an example for using the IntentRouter class which runs on top of the LuisClient
+The sample application allows you to perform the Predict and Reply operations and to view the following parts of the parsed response:
+- Query
+- Top Intent
+- Dialog prompt/status
+- Entities
 
 License
 =======
