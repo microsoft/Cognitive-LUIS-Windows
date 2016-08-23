@@ -75,7 +75,5 @@ namespace Microsoft.Cognitive.LUIS
                 Resolution = new Dictionary<string, Object>();
             }
         }
-
-
     }
 }

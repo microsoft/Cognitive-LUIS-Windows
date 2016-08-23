@@ -83,6 +83,11 @@ namespace Microsoft.Cognitive.LUIS
         public IDictionary<string, IList<Entity>> Entities { get; set; }
 
         /// <summary>
+        /// Collection of <see cref="CompositeEntities"/> objects parsed accessed though a dictionary for easy access.
+        /// </summary>
+        public IDictionary<string, IList<CompositeEntity>> CompositeEntities { get; set; }
+
+        /// <summary>
         /// Construct an empty result set.
         /// </summary>
         public LuisResult() { }
@@ -130,6 +135,8 @@ namespace Microsoft.Cognitive.LUIS
             }
             var entities = (JArray)result["entities"] ?? new JArray();
             Entities = ParseEntityArrayToDictionary(entities);
+            var compositeEntities = (JArray)result["compositeEntities"] ?? new JArray();
+            CompositeEntities = ParseCompositeEntityArrayToDictionary(compositeEntities);
         }
 
         /// <summary>
@@ -147,6 +154,23 @@ namespace Microsoft.Cognitive.LUIS
                 }
             }
             return entities;
+        }
+
+        /// <summary>
+        /// gets all composite entities returned by the LUIS service
+        /// </summary>
+        /// <returns>a list of all composite entities</returns>
+        public List<CompositeEntity> GetAllCompositeEntities()
+        {
+            List<CompositeEntity> compositeEntities = new List<CompositeEntity>();
+            foreach (var compositeEntityList in CompositeEntities)
+            {
+                foreach (CompositeEntity compositeEntity in compositeEntityList.Value)
+                {
+                    compositeEntities.Add(compositeEntity);
+                }
+            }
+            return compositeEntities;
         }
 
         /// <summary>
@@ -169,10 +193,10 @@ namespace Microsoft.Cognitive.LUIS
         }
 
         /// <summary>
-        /// Parses a json array of entities into an entity array
+        /// Parses a json array of entities into an entity dictionary.
         /// </summary>
         /// <param name="array"></param>
-        /// <returns>The object containing the list of entities</returns>
+        /// <returns>The object containing the dictionary of entities</returns>
         private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary(JArray array)
         {
             var count = array.Count;
@@ -191,6 +215,35 @@ namespace Microsoft.Cognitive.LUIS
                 else
                 {
                     entityList.Add(e);
+                }
+            }
+
+            return dict;
+        }
+
+        /// <summary>
+        /// Parses a json array of composite entities into a composite entity dictionary.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns>The object containing the dictionary of composite entities</returns>
+        private IDictionary<string, IList<CompositeEntity>> ParseCompositeEntityArrayToDictionary(JArray array)
+        {
+            var count = array.Count;
+            var dict = new Dictionary<string, IList<CompositeEntity>>();
+
+            foreach (var item in array)
+            {
+                var e = new CompositeEntity();
+                e.Load((JObject)item);
+
+                IList<CompositeEntity> compositeEntityList;
+                if (!dict.TryGetValue(e.ParentType, out compositeEntityList))
+                {
+                    dict[e.ParentType] = new List<CompositeEntity>() { e };
+                }
+                else
+                {
+                    compositeEntityList.Add(e);
                 }
             }
 

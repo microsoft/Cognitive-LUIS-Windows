@@ -33,68 +33,34 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Microsoft.Cognitive.LUIS
 {
-    public class Parameter
+    /// <summary
+    /// Represents a composite entity recognised by LUIS
+    /// </summary>
+    public class CompositeEntityChild
     {
         /// <summary>
-        /// Name of the parameter.
+        /// The name of the type of parent entity.
         /// </summary>
-        public string Name { get; set; }
-
+        public string ParentType { get; set; }
         /// <summary>
-        /// whether the parameter is required or not
+        /// The composite entity value.
         /// </summary>
-        public bool Required { get; set; }
-
-        /// <summary>
-        /// list of parameter values (entities) in the parameter
-        /// </summary>
-        public ParameterValue[] ParameterValues { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// Loads the json object into the properties of the object.
         /// </summary>
-        /// <param name="parameterValue">Json object containing the parameter value</param>
-        public void Load(JObject parameter)
+        /// <param name="compositeEntityChild">Json object containing the composite entity child</param>
+        public void Load(JObject compositeEntityChild)
         {
-            Name = (string)parameter["name"];
-            Required = (bool)parameter["required"];
-            try
-            {
-                var values = (JArray)parameter["value"] ?? new JArray();
-                ParameterValues = ParseValuesArray(values);
-            }
-            catch (Exception e)
-            {
-                ParameterValues = null;
-            }
-
-        }
-
-        /// <summary>
-        /// Parses Json array of parameter values into parameter value array.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <returns>parameter value array</returns>
-        private ParameterValue[] ParseValuesArray(JArray array)
-        {
-            var count = array.Count;
-            var a = new ParameterValue[count];
-            for (var i = 0; i < count; i++)
-            {
-                var t = new ParameterValue();
-                t.Load((JObject)array[i]);
-                a[i] = t;
-            }
-            return a;
+            ParentType = (string)compositeEntityChild["type"];
+            Value = (string)compositeEntityChild["value"];
         }
     }
 }

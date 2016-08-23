@@ -34,6 +34,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using SampleUserControlLibrary;
 using Microsoft.Cognitive.LUIS;
 
 namespace Sample
@@ -60,7 +62,7 @@ namespace Sample
             if (prevResult == null || (prevResult.DialogResponse != null
                 && prevResult.DialogResponse.Status == "Finished"))
             {
-                txtBlockResMsg.Text = "Nothing to reply to!";
+                ((MainWindow)Application.Current.MainWindow).Log("There is nothing to reply to.");
                 return;
             }
             Reply();
@@ -75,6 +77,7 @@ namespace Sample
             LuisClient client = new LuisClient(_appId, _subscriptionKey, _preview);
             LuisResult res = await client.Predict(_textToPredict);
             processRes(res);
+            ((MainWindow)Application.Current.MainWindow).Log("Predicted successfully.");
         }
 
         public async Task Reply()
@@ -86,32 +89,33 @@ namespace Sample
             LuisClient client = new LuisClient(_appId, _subscriptionKey, _preview);
             LuisResult res = await client.Reply(prevResult, _textToPredict);
             processRes(res);
+            ((MainWindow)Application.Current.MainWindow).Log("Replied successfully.");
         }
 
         private void processRes(LuisResult res)
         {
             txtPredict.Text = "";
             prevResult = res;
-            string resMsg = res.OriginalQuery;
-            resMsg += "\nTop Intent: " + res.TopScoringIntent.Name;
-            resMsg += "\nEntities:";
+            queryTextBlock.Text = res.OriginalQuery;
+            topIntentTextBlock.Text = res.TopScoringIntent.Name;
+            List<string> entitiesNames = new List<string>();
             var entities = res.GetAllEntities();
-            for (int i = 0; i < entities.Count; i++)
+            foreach(Entity entity in entities)
             {
-                resMsg += "\n" + entities[i].Name;
+                entitiesNames.Add(entity.Name);
             }
+            entitiesListBox.ItemsSource = entitiesNames;
             if (res.DialogResponse != null)
             {
                 if (res.DialogResponse.Status != "Finished")
                 {
-                    resMsg += "\nDialog Prompt: " + res.DialogResponse.Prompt;
+                    dialogTextBlock.Text = res.DialogResponse.Prompt;
                 }
                 else
                 {
-                    resMsg += "\nFinished";
+                    dialogTextBlock.Text = "Finished";
                 }
             }
-            txtBlockResMsg.Text = resMsg;
         }
     }
 }
