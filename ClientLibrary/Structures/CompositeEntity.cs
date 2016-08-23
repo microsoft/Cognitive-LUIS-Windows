@@ -33,64 +33,62 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Microsoft.Cognitive.LUIS
 {
-    public class Parameter
+    /// <summary
+    /// Represents a composite entity recognised by LUIS
+    /// </summary>
+    public class CompositeEntity
     {
         /// <summary>
-        /// Name of the parameter.
+        /// The name of the type of parent entity.
         /// </summary>
-        public string Name { get; set; }
-
+        public string ParentType { get; set; }
         /// <summary>
-        /// whether the parameter is required or not
+        /// The composite entity value.
         /// </summary>
-        public bool Required { get; set; }
-
+        public string Value { get; set; }
         /// <summary>
-        /// list of parameter values (entities) in the parameter
+        /// A list of child entities of the composite entity.
         /// </summary>
-        public ParameterValue[] ParameterValues { get; set; }
+        public CompositeEntityChild[] CompositeEntityChildren { get; set; }
 
         /// <summary>
         /// Loads the json object into the properties of the object.
         /// </summary>
-        /// <param name="parameterValue">Json object containing the parameter value</param>
-        public void Load(JObject parameter)
+        /// <param name="compositeEntity">Json object containing the composite entity</param>
+        public void Load(JObject compositeEntity)
         {
-            Name = (string)parameter["name"];
-            Required = (bool)parameter["required"];
+            ParentType = (string)compositeEntity["parentType"];
+            Value = (string)compositeEntity["value"];
             try
             {
-                var values = (JArray)parameter["value"] ?? new JArray();
-                ParameterValues = ParseValuesArray(values);
+                var values = (JArray)compositeEntity["children"] ?? new JArray();
+                CompositeEntityChildren = ParseValuesArray(values);
             }
             catch (Exception e)
             {
-                ParameterValues = null;
+                CompositeEntityChildren = null;
             }
 
         }
 
         /// <summary>
-        /// Parses Json array of parameter values into parameter value array.
+        /// Parses Json array of composite entity children into composite entity child array.
         /// </summary>
         /// <param name="array"></param>
-        /// <returns>parameter value array</returns>
-        private ParameterValue[] ParseValuesArray(JArray array)
+        /// <returns>entities array</returns>
+        private CompositeEntityChild[] ParseValuesArray(JArray array)
         {
             var count = array.Count;
-            var a = new ParameterValue[count];
+            var a = new CompositeEntityChild[count];
             for (var i = 0; i < count; i++)
             {
-                var t = new ParameterValue();
+                var t = new CompositeEntityChild();
                 t.Load((JObject)array[i]);
                 a[i] = t;
             }
