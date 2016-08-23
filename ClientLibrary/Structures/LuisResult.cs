@@ -135,12 +135,8 @@ namespace Microsoft.Cognitive.LUIS
             }
             var entities = (JArray)result["entities"] ?? new JArray();
             Entities = ParseEntityArrayToDictionary(entities);
-            if (result["compositeEntities"] != null)
-            {
-                var compositeEntities = (JArray)result["compositeEntities"] ?? new JArray();
-                CompositeEntities = ParseCompositeEntityArrayToDictionary(compositeEntities);
-            }
-
+            var compositeEntities = (JArray)result["compositeEntities"] ?? new JArray();
+            CompositeEntities = ParseCompositeEntityArrayToDictionary(compositeEntities);
         }
 
         /// <summary>

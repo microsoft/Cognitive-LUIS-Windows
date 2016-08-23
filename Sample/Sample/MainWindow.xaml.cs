@@ -49,6 +49,7 @@ namespace Sample
             {
                 new Scenario { Title = "Scenario 1: Make a prediction", PageClass=typeof(MakePredictionPage)}
             };
+            _scenariosControl.Disclaimer = "Microsoft will receive the uploaded text and may use it to improve LUIS and related services. By submitting the text, you confirm that you consent.";
         }
 
         public string SubscriptionKey
@@ -57,6 +58,11 @@ namespace Sample
             {
                 return _scenariosControl.SubscriptionKey;
             }
+        }
+
+        public void Log(string logMessage)
+        {
+            _scenariosControl.Log(logMessage);
         }
     }
 }
