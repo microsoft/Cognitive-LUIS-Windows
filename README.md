@@ -5,6 +5,10 @@ In order to use the SDK you first need to create and publish an app on www.luis.
 
 The solution contains the SDK itself and a sample application that contains 2 sample use cases (one with intent routers and one using the client directly)
 
+Cloning The Repo
+--------------
+Please note that the repo depends on a submodule, so in order to clone it you'll have to attach --recursive option to the clone command:
+`git clone --recursive  https://github.com/Microsoft/Cognitive-LUIS-Windows.git`
 
 The SDK
 --------------
