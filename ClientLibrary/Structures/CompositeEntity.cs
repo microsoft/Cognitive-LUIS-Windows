@@ -70,7 +70,7 @@ namespace Microsoft.Cognitive.LUIS
                 var values = (JArray)compositeEntity["children"] ?? new JArray();
                 CompositeEntityChildren = ParseValuesArray(values);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 CompositeEntityChildren = null;
             }

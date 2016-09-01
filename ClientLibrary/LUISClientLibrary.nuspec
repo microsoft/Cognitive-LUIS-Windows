@@ -11,8 +11,8 @@
     <iconUrl>https://www.luis.ai/Content/images/luis_darker_logo.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright (c) 2015</copyright>
+    <releaseNotes>User-configurable hostname.</releaseNotes>
+    <copyright>Copyright (c) 2016</copyright>
     <tags>Microsoft Cognitive Services LUIS</tags>
     <dependencies>
     	<dependency id="Newtonsoft.Json" version="9.0.1" />

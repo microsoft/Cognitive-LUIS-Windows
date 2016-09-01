@@ -46,6 +46,8 @@ namespace Microsoft.Cognitive.LUIS
     /// </summary>
     public class LuisClient : IDisposable
     {
+        private const string DEFAULT_BASE_URI = "https://api.projectoxford.ai/luis/v1/application";
+
         /// <summary>
         /// flag to indidicate whether to return full result of all intents not just the top scoring intent (for preview features only)
         /// </summary>
@@ -90,20 +92,31 @@ namespace Microsoft.Cognitive.LUIS
         }
 
         /// <summary>
-        ///Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
         /// </summary>
         /// <param name="appId">The application ID of the LUIS application</param>
         /// <param name="appKey">The application subscription key of the LUIS application</param>
         /// <param name="preview">A flag indicating whether to use preview features or not (Dialogue)</param>
         /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, bool preview = false)
+        public LuisClient(string appId, string appKey, bool preview = false) : this(appId, appKey, DEFAULT_BASE_URI, preview) { }
+
+        /// <summary>
+        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+        /// </summary>
+        /// <param name="appId">The application ID of the LUIS application</param>
+        /// <param name="appKey">The application subscription key of the LUIS application</param>
+        /// <param name="baseApiUrl">Root URI for the service endpoint.</param>
+        /// <param name="preview">A flag indicating whether to use preview features or not (Dialogue)</param>
+        /// top scoring in case of using the dialogue</param>
+        public LuisClient(string appId, string appKey, string baseApiUrl, bool preview = false)
         {
             if (String.IsNullOrWhiteSpace(appId)) throw new ArgumentException(nameof(appId));
             if (String.IsNullOrWhiteSpace(appKey)) throw new ArgumentException(nameof(appKey));
+            if (String.IsNullOrWhiteSpace(baseApiUrl)) throw new ArgumentException(nameof(baseApiUrl));
 
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", appKey);
-            BASE_API_URL = "https://api.projectoxford.ai/luis/v1/application";
+            BASE_API_URL = baseApiUrl;
 
             Preview = preview;
             _appId = appId;

@@ -72,7 +72,7 @@ namespace Microsoft.Cognitive.LUIS
                 var values = (JArray)parameter["value"] ?? new JArray();
                 ParameterValues = ParseValuesArray(values);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ParameterValues = null;
             }

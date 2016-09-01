@@ -81,7 +81,7 @@ namespace Microsoft.Cognitive.LUIS
             {
                 Score = (double)entity["score"];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Score = -1;
             }
