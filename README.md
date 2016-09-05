@@ -1,9 +1,9 @@
 LUIS
 ==============
 LUIS is a service for language understanding that provides intent classification and entity extraction.
-In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your appID and appKey and put their values into App.config in the application provided
+In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your appID and appKey.
 
-The solution contains the SDK itself and a sample application that contains 2 sample use cases (one with intent routers and one using the client directly)
+The solution contains the SDK itself and a sample application that allow you to enter you appId and appKey, and to perform the two actions "predict" and "reply".
 
 Cloning The Repo
 --------------
