@@ -3,7 +3,7 @@ LUIS
 LUIS is a service for language understanding that provides intent classification and entity extraction.
 In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your appID and appKey.
 
-The solution contains the SDK itself and a sample application that allow you to enter you appId and appKey, and to perform the two actions "predict" and "reply".
+The solution contains the SDK and a sample application that allows you to enter your appId and appKey, and to perform the two actions "predict" and "reply".
 
 Cloning The Repo
 --------------
@@ -33,5 +33,5 @@ All Microsoft Cognitive Services SDKs and samples are licensed with the MIT Lice
 Developer Code of Conduct
 =======
 
-Developers using Cognitive Services, including this client library & sample, are required to follow the ì[Developer Code of Conduct for Microsoft Cognitive Services](http://go.microsoft.com/fwlink/?LinkId=698895)î.
+Developers using Cognitive Services, including this client library & sample, are required to follow the ‚Äú[Developer Code of Conduct for Microsoft Cognitive Services](http://go.microsoft.com/fwlink/?LinkId=698895)‚Äù.
 

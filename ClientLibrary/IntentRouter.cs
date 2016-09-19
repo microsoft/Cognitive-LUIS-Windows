@@ -36,7 +36,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -49,7 +48,7 @@ namespace Microsoft.Cognitive.LUIS
     /// <param name="entities">Dictionary containing <see cref="Entity"/> objects identified by the LUIS service.</param>
     /// <param name="context">Opaque content provided by the application to its intent handlers.</param>
     /// <returns>True if the intent was handled.</returns>
-    public delegate Task<bool> IntentHandlerFunc(LuisResult result, object context);
+    public delegate void IntentHandlerFunc(LuisResult result, object context);
 
     /// <summary>
     /// Routes results returns from the LUIS service to registed intent handlers.
@@ -253,8 +252,8 @@ namespace Microsoft.Cognitive.LUIS
         {
             if (_client == null) throw new InvalidOperationException("No API endpoint has been specified for this IntentRouter");
 
-            var result = await _client.Predict(text);
-            return await Route(result, context);
+            LuisResult result = result = await _client.Predict(text);
+            return Route(result, context);
         }
 
         /// <summary>
@@ -263,7 +262,7 @@ namespace Microsoft.Cognitive.LUIS
         /// <param name="result">Result from LUIS service to route.</param>
         /// <param name="context">Opaque context object to pass through to activated intent handler</param>
         /// <returns>True if an intent was routed and handled.</returns>
-        public async Task<bool> Route(LuisResult result, object context)
+        public bool Route(LuisResult result, object context)
         {
             if (result.Intents == null)
                 return false;
@@ -273,8 +272,8 @@ namespace Microsoft.Cognitive.LUIS
                 HandlerDetails handler;
                 if (_handlers.TryGetValue(intent.Name, out handler) && (handler.Threshold < intent.Score))
                 {
-                    var handled = await handler.Exec(result, context);
-                    if (handled) return true;
+                    handler.Exec(result, context);
+                    return true;
                 }
             }
 

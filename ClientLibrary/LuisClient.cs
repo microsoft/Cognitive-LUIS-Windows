@@ -127,16 +127,21 @@ namespace Microsoft.Cognitive.LUIS
         /// Encodes text to be suitable for http requests
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="forceSetParameterName">The name of a parameter to reset in the current dialog</param>
         /// <returns></returns>
-        private string EncodeRequest(string text)
+        private string EncodeRequest(string text, string forceSetParameterName = null)
         {
             string applicationUrl;
             if (Preview)
                 applicationUrl = CreateApplicationPreviewUri(_appId);
             else
                 applicationUrl = CreateApplicationUri(_appId);
-
-            return applicationUrl + WebUtility.UrlEncode(text);
+            applicationUrl += WebUtility.UrlEncode(text);
+            if (!String.IsNullOrWhiteSpace(forceSetParameterName))
+            {
+                applicationUrl += $"&forceset={forceSetParameterName}";
+            }
+            return applicationUrl;
         }
 
         /// <summary>
@@ -144,18 +149,18 @@ namespace Microsoft.Cognitive.LUIS
         /// </summary>
         /// <param name="luisResult">The luis result obtained from the previous step (Predict/Reply)</param>
         /// <param name="text">The text to Reply with</param>
+        /// <param name="forceSetParameterName">The name of a parameter to reset in the current dialog</param>
         /// <returns></returns>
-        public async Task<LuisResult> Reply(LuisResult luisResult, string text)
+        public async Task<LuisResult> Reply(LuisResult luisResult, string text, string forceSetParameterName = null)
         {
-            if (String.IsNullOrWhiteSpace(text))
-                return new LuisResult();
+            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException(nameof(text));
 
             if (luisResult == null) throw new ArgumentNullException("Luis result can't be null");
             if (luisResult.DialogResponse == null) throw new ArgumentNullException("Dialog can't be null in order to Reply");
             if (luisResult.DialogResponse.ContextId == null) throw new ArgumentNullException("Context id cannot be null");
 
-            var uri = EncodeRequest(text) + $"&contextid={luisResult.DialogResponse.ContextId}";
-            var result = await _http.RestGet(uri);
+            var uri = EncodeRequest(text, forceSetParameterName) + $"&contextid={luisResult.DialogResponse.ContextId}";
+            var result = await _http.RestGet(uri).ConfigureAwait(false);
             return new LuisResult(this, result);
         }
 
@@ -166,11 +171,10 @@ namespace Microsoft.Cognitive.LUIS
         /// <returns></returns>
         public async Task<LuisResult> Predict(string text)
         {
-            if (String.IsNullOrWhiteSpace(text))
-                return new LuisResult();
+            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException(nameof(text));
 
             var uri = EncodeRequest(text);
-            var result = await _http.RestGet(uri);
+            var result = await _http.RestGet(uri).ConfigureAwait(false);
             return new LuisResult(this, result);
         }
 
