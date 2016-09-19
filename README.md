@@ -1,7 +1,7 @@
-LUIS
+﻿LUIS
 ==============
 LUIS is a service for language understanding that provides intent classification and entity extraction.
-In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your appID and appKey.
+In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your Application Id and Subscription Key.
 
 The solution contains the SDK and a sample application that allows you to enter your appId and appKey, and to perform the two actions "predict" and "reply".
 
@@ -18,11 +18,14 @@ The SDK can be used in 2 different ways (both are shown in the sample).
 
 Sample Application
 --------------
-The sample application allows you to perform the Predict and Reply operations and to view the following parts of the parsed response:
-- Query
-- Top Intent
-- Dialog prompt/status
-- Entities
+The sample application allows you to try three different modes.
+-Mode 1: Perform the Predict and Reply actions using LuisClient directly operations and to view the following parts of the parsed response: Query, Top Intent, Dialog prompt/status, Entities
+-Mode 2: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contains normal functions
+-Mode 3: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contain static functions
+
+Intent Router and Handlers mode
+--------------
+In order to use modes 2 and 3 of the sample application you have to import this [LUIS application JSON file](</Sample/LUIS Sample Application JSON/SDK Test.json>) using your LUIS account, train and publish it, and use its Application Id in those two modes.
 
 License
 =======
