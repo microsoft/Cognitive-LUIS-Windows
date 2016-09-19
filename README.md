@@ -26,6 +26,11 @@ The sample application allows you to try three different modes.
 Intent Router and Handlers mode
 --------------
 In order to use modes 2 and 3 of the sample application you have to import this [LUIS application JSON file](</Sample/LUIS Sample Application JSON/SDK Test.json>) using your LUIS account, train and publish it, and use its Application Id in those two modes.
+You can try the following utterances:
+- "Book me a flight" get routed to "Book a flight" intent handler
+- "Book me a cab" gets routed to "Book a cab" intent handler
+- "Order food" gets routed to "None" intent handler
+- "Book me a train" doesn't get routed to any intent handler due to low confidence score
 
 License
 =======
