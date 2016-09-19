@@ -19,9 +19,9 @@ The SDK can be used in 2 different ways (both are shown in the sample).
 Sample Application
 --------------
 The sample application allows you to try three different modes.
--Mode 1: Perform the Predict and Reply actions using LuisClient directly operations and to view the following parts of the parsed response: Query, Top Intent, Dialog prompt/status, Entities
--Mode 2: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contains normal functions
--Mode 3: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contain static functions
+- Mode 1: Perform the Predict and Reply actions using LuisClient directly operations and to view the following parts of the parsed response: Query, Top Intent, Dialog prompt/status, Entities
+- Mode 2: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contains normal functions
+- Mode 3: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contain static functions
 
 Intent Router and Handlers mode
 --------------
