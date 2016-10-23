@@ -71,18 +71,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IntentHandlers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MakePredictionPage.xaml">
+    <Page Include="UsingIntentRouter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsingStaticIntentRouter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsingLUISClientDirectly.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MakePredictionPage.xaml.cs">
-      <DependentUpon>MakePredictionPage.xaml</DependentUpon>
+    <Compile Include="StaticIntentHandlers.cs" />
+    <Compile Include="UsingIntentRouter.xaml.cs">
+      <DependentUpon>UsingIntentRouter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingStaticIntentRouter.xaml.cs">
+      <DependentUpon>UsingStaticIntentRouter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsingLUISClientDirectly.xaml.cs">
+      <DependentUpon>UsingLUISClientDirectly.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

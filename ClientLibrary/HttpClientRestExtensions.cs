@@ -54,9 +54,9 @@ namespace Microsoft.Cognitive.LUIS
         /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
         public async static Task<JToken> RestGet(this HttpClient client, string url)
         {
-            var response = await client.GetAsync(url);
+            var response = await client.GetAsync(url).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync();
+            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JToken.Parse(body);
         }
     }

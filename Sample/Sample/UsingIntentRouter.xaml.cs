@@ -31,40 +31,58 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 
+using System;
 using System.Windows;
-using SampleUserControlLibrary;
+using System.Windows.Controls;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.Cognitive.LUIS;
 
 namespace Sample
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UsingLUISClientDirectly.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UsingIntentRouter : Page
     {
-        public MainWindow()
+        public UsingIntentRouter()
         {
             InitializeComponent();
-            _scenariosControl.SampleTitle = "LUIS SDK Sample App";
-            _scenariosControl.SampleScenarioList = new Scenario[]
-            {
-                new Scenario { Title = "Scenario 1: Using LuisClient Directly", PageClass=typeof(UsingLUISClientDirectly)},
-                new Scenario { Title = "Scenario 2: Using IntentRouter", PageClass=typeof(UsingIntentRouter)},
-                new Scenario { Title = "Scenario 3: Using static IntentRouter", PageClass=typeof(UsingStaticIntentRouter)}
-            };
-            _scenariosControl.Disclaimer = "Microsoft will receive the uploaded text and may use it to improve LUIS and related services. By submitting the text, you confirm that you consent.";
         }
 
-        public string SubscriptionKey
+        private void btnPredict_Click(object sender, RoutedEventArgs e)
         {
-            get
+            Predict();
+        }
+
+        public async void Predict()
+        {
+            string _appId = txtAppId.Text;
+            string _subscriptionKey = ((MainWindow)Application.Current.MainWindow).SubscriptionKey;
+            string _textToPredict = txtPredict.Text;
+            IntentHandlers ih = new IntentHandlers();
+
+            try
             {
-                return _scenariosControl.SubscriptionKey;
+                using (var router = IntentRouter.Setup(_appId, _subscriptionKey, ih))
+                {
+                    var handled = await router.Route(_textToPredict, this);
+                    if (!handled)
+                    {
+                        queryTextBlock.Text = "";
+                        topIntentTextBlock.Text = "";
+                        ((MainWindow)Application.Current.MainWindow).Log("Intent was not matched confidently, maybe more training required?");
+                    }
+                    else
+                    {
+                        ((MainWindow)Application.Current.MainWindow).Log("Predicted successfully.");
+                    }
+                }
             }
-        }
-
-        public void Log(string logMessage)
-        {
-            _scenariosControl.Log(logMessage);
+            catch (Exception exception)
+            {
+                ((MainWindow)Application.Current.MainWindow).Log(exception.Message);
+            }
         }
     }
 }
