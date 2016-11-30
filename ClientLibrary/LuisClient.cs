@@ -46,21 +46,12 @@ namespace Microsoft.Cognitive.LUIS
     /// </summary>
     public class LuisClient : IDisposable
     {
-        private const string DEFAULT_BASE_URI = "https://api.projectoxford.ai/luis/v1/application";
-
-        /// <summary>
-        /// flag to indidicate whether to return full result of all intents not just the top scoring intent (for preview features only)
-        /// </summary>
-        public bool Verbose { get; set; }
-
-        /// <summary>
-        /// flag to inidicate that preview features will be used
-        /// </summary>
-        public bool Preview { get; set; }
-
+        private const string DEFAULT_BASE_URI = "https://api.projectoxford.ai/luis/v2.0/apps";
+        
         protected string BASE_API_URL { get; set; }
         private readonly HttpClient _http;
         private readonly string _appId;
+        private readonly bool _verbose;
 
         /// <summary>
         /// Generates an API URI using the provided id and key for a registered LUIS application.
@@ -72,23 +63,9 @@ namespace Microsoft.Cognitive.LUIS
         {
             if (String.IsNullOrWhiteSpace(id)) throw new ArgumentException(nameof(id));
 
-            return $"{BASE_API_URL}?id={id}&q=";
-        }
+            string verboseQuery = (_verbose) ? "verbose=true" : "";
 
-        /// <summary>
-        /// Generates an API URI (for preview features) using the provided id and key for a registered LUIS application.
-        /// </summary>
-        /// <param name="id">Application id</param>
-        /// <param name="subscriptionKey">Application key</param>
-        /// /// <param name="verbose">if true, return all intents not just the top scoring intent</param>
-        /// <returns>Application Preview URL for <see cref="LuisClient"/></returns>
-        private string CreateApplicationPreviewUri(string id)
-        {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentException(nameof(id));
-
-            string verboseQuery = (Verbose) ? "&verbose=true" : "";
-
-            return $"{BASE_API_URL}/preview?id={id}{verboseQuery}&q=";
+            return $"{BASE_API_URL}/{id}?{verboseQuery}&q=";
         }
 
         /// <summary>
@@ -96,9 +73,9 @@ namespace Microsoft.Cognitive.LUIS
         /// </summary>
         /// <param name="appId">The application ID of the LUIS application</param>
         /// <param name="appKey">The application subscription key of the LUIS application</param>
-        /// <param name="preview">A flag indicating whether to use preview features or not (Dialogue)</param>
+        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
         /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, bool preview = false) : this(appId, appKey, DEFAULT_BASE_URI, preview) { }
+        public LuisClient(string appId, string appKey, bool verbose = true) : this(appId, appKey, DEFAULT_BASE_URI, verbose) { }
 
         /// <summary>
         /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
@@ -106,9 +83,9 @@ namespace Microsoft.Cognitive.LUIS
         /// <param name="appId">The application ID of the LUIS application</param>
         /// <param name="appKey">The application subscription key of the LUIS application</param>
         /// <param name="baseApiUrl">Root URI for the service endpoint.</param>
-        /// <param name="preview">A flag indicating whether to use preview features or not (Dialogue)</param>
+        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
         /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, string baseApiUrl, bool preview = false)
+        public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true)
         {
             if (String.IsNullOrWhiteSpace(appId)) throw new ArgumentException(nameof(appId));
             if (String.IsNullOrWhiteSpace(appKey)) throw new ArgumentException(nameof(appKey));
@@ -117,10 +94,10 @@ namespace Microsoft.Cognitive.LUIS
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", appKey);
             BASE_API_URL = baseApiUrl;
-
-            Preview = preview;
+            
             _appId = appId;
             _http = httpClient;
+            _verbose = verbose;
         }
 
         /// <summary>
@@ -132,10 +109,7 @@ namespace Microsoft.Cognitive.LUIS
         private string EncodeRequest(string text, string forceSetParameterName = null)
         {
             string applicationUrl;
-            if (Preview)
-                applicationUrl = CreateApplicationPreviewUri(_appId);
-            else
-                applicationUrl = CreateApplicationUri(_appId);
+            applicationUrl = CreateApplicationUri(_appId);
             applicationUrl += WebUtility.UrlEncode(text);
             if (!String.IsNullOrWhiteSpace(forceSetParameterName))
             {
@@ -153,7 +127,7 @@ namespace Microsoft.Cognitive.LUIS
         /// <returns></returns>
         public async Task<LuisResult> Reply(LuisResult luisResult, string text, string forceSetParameterName = null)
         {
-            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException(nameof(text));
+            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException("Invalid text query");
 
             if (luisResult == null) throw new ArgumentNullException("Luis result can't be null");
             if (luisResult.DialogResponse == null) throw new ArgumentNullException("Dialog can't be null in order to Reply");
@@ -171,7 +145,7 @@ namespace Microsoft.Cognitive.LUIS
         /// <returns></returns>
         public async Task<LuisResult> Predict(string text)
         {
-            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException(nameof(text));
+            if (String.IsNullOrWhiteSpace(text)) throw new ArgumentException("Invalid text query");
 
             var uri = EncodeRequest(text);
             var result = await _http.RestGet(uri).ConfigureAwait(false);

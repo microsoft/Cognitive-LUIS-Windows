@@ -79,12 +79,12 @@ namespace Sample
         {
             string appId = txtAppId.Text;
             string subscriptionKey = ((MainWindow)Application.Current.MainWindow).SubscriptionKey;
-            bool preview = true;
+            bool verbose = true;
             string textToPredict = txtPredict.Text;
             string forceSetParameterName = txtForceSet.Text;
             try
             {
-                LuisClient client = new LuisClient(appId, subscriptionKey, preview);
+                LuisClient client = new LuisClient(appId, subscriptionKey, verbose);
                 LuisResult res = await client.Predict(textToPredict);
                 processRes(res);
                 ((MainWindow)Application.Current.MainWindow).Log("Predicted successfully.");

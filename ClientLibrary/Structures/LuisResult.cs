@@ -114,18 +114,13 @@ namespace Microsoft.Cognitive.LUIS
 
             OriginalQuery = (string)result["query"] ?? string.Empty;
             var intents = (JArray)result["intents"] ?? new JArray();
+            TopScoringIntent = new Intent();
+            TopScoringIntent.Load((JObject)result["topScoringIntent"]);
             Intents = ParseIntentArray(intents);
             if (Intents.Length == 0)
             {
-                var t = new Intent();
-                t.Load((JObject)result["topScoringIntent"]);
-                TopScoringIntent = t;
                 Intents = new Intent[1];
                 Intents[0] = TopScoringIntent;
-            }
-            else
-            {
-                TopScoringIntent = Intents[0];
             }
             if (result["dialog"] != null)
             {
