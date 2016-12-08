@@ -53,6 +53,11 @@ namespace Microsoft.Cognitive.LUIS
         public string OriginalQuery { get; set; }
 
         /// <summary>
+        /// Altered text sent to the LUIS service for parsing.
+        /// </summary>
+        public string AlteredQuery { get; private set; }
+
+        /// <summary>
         /// The best matching intent in this result set.
         /// </summary>
         public Intent TopScoringIntent { get; set; }
@@ -113,6 +118,7 @@ namespace Microsoft.Cognitive.LUIS
             if (result == null) throw new ArgumentNullException(nameof(result));
 
             OriginalQuery = (string)result["query"] ?? string.Empty;
+            AlteredQuery = (string)result["alteredQuery"] ?? string.Empty;
             var intents = (JArray)result["intents"] ?? new JArray();
             Intents = ParseIntentArray(intents);
             if (Intents.Length == 0)
