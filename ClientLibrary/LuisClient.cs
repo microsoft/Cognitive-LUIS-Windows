@@ -46,7 +46,8 @@ namespace Microsoft.Cognitive.LUIS
     /// </summary>
     public class LuisClient : IDisposable
     {
-        private const string DEFAULT_BASE_URI = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps";
+        private const string DEFAULT_DOMAIN = "westus";
+        private const string DEFAULT_BASE_URI = "https://{0}.api.cognitive.microsoft.com/luis/v2.0/apps";
         
         protected string BASE_API_URL { get; set; }
         private readonly HttpClient _http;
@@ -74,8 +75,9 @@ namespace Microsoft.Cognitive.LUIS
         /// <param name="appId">The application ID of the LUIS application</param>
         /// <param name="appKey">The application subscription key of the LUIS application</param>
         /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
+        /// <param name="domain">String to represent the domain of the endpoint</param>
         /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, bool verbose = true) : this(appId, appKey, DEFAULT_BASE_URI, verbose) { }
+        public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain) { }
 
         /// <summary>
         /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
@@ -85,7 +87,7 @@ namespace Microsoft.Cognitive.LUIS
         /// <param name="baseApiUrl">Root URI for the service endpoint.</param>
         /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
         /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true)
+        public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true, string domain = DEFAULT_DOMAIN)
         {
             if (String.IsNullOrWhiteSpace(appId)) throw new ArgumentException(nameof(appId));
             if (String.IsNullOrWhiteSpace(appKey)) throw new ArgumentException(nameof(appKey));
@@ -93,7 +95,7 @@ namespace Microsoft.Cognitive.LUIS
 
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", appKey);
-            BASE_API_URL = baseApiUrl;
+            BASE_API_URL = string.Format(baseApiUrl, domain);
             
             _appId = appId;
             _http = httpClient;
