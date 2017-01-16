@@ -46,7 +46,7 @@ namespace Microsoft.Cognitive.LUIS
     /// </summary>
     public class LuisClient : IDisposable
     {
-        private const string DEFAULT_BASE_URI = "https://api.projectoxford.ai/luis/v2.0/apps";
+        private const string DEFAULT_BASE_URI = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps";
         
         protected string BASE_API_URL { get; set; }
         private readonly HttpClient _http;
