@@ -50,7 +50,13 @@ namespace Microsoft.Cognitive.LUIS
         /// <summary>
         /// Original text sent to the LUIS service for parsing.
         /// </summary>
-        public string OriginalQuery { get; set; }
+        public string OriginalQuery { get; set; }        
+		
+		/// <summary>
+        /// Original text that has been spell-corrected with Luis-Bing integration.
+        /// </summary>
+        /// <remarks>Only has a value if the original query was changed.</remarks>
+        public string AlteredQuery { get; set; }
 
         /// <summary>
         /// The best matching intent in this result set.
@@ -113,6 +119,7 @@ namespace Microsoft.Cognitive.LUIS
             if (result == null) throw new ArgumentNullException(nameof(result));
 
             OriginalQuery = (string)result["query"] ?? string.Empty;
+            AlteredQuery = (string)result["alteredQuery"] ?? string.Empty;
             var intents = (JArray)result["intents"] ?? new JArray();
             TopScoringIntent = new Intent();
             TopScoringIntent.Load((JObject)result["topScoringIntent"]);
