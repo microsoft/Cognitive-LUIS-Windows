@@ -51,8 +51,8 @@ namespace Microsoft.Cognitive.LUIS
         /// Original text sent to the LUIS service for parsing.
         /// </summary>
         public string OriginalQuery { get; set; }        
-		
-		/// <summary>
+
+        /// <summary>
         /// Original text that has been spell-corrected with Luis-Bing integration.
         /// </summary>
         /// <remarks>Only has a value if the original query was changed.</remarks>
