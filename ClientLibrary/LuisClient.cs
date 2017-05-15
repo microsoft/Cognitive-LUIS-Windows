@@ -35,6 +35,7 @@
 
 
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -53,6 +54,7 @@ namespace Microsoft.Cognitive.LUIS
         private readonly HttpClient _http;
         private readonly string _appId;
         private readonly bool _verbose;
+        private readonly bool? _spellCheckOverride;
 
         /// <summary>
         /// Generates an API URI using the provided id and key for a registered LUIS application.
@@ -64,30 +66,36 @@ namespace Microsoft.Cognitive.LUIS
         {
             if (String.IsNullOrWhiteSpace(id)) throw new ArgumentException(nameof(id));
 
-            string verboseQuery = (_verbose) ? "verbose=true" : "";
+			string queryString = string.Join("&",
+				new[]
+				{
+					_verbose ? "verbose=true" : null,
+					_spellCheckOverride.HasValue ? $"spellCheck={_spellCheckOverride.ToString().ToLower()}" : null,
+					"q="
+				}.Where(s => s != null));
 
-            return $"{BASE_API_URL}/{id}?{verboseQuery}&q=";
+			return $"{BASE_API_URL}/{id}?{queryString}";
         }
 
-        /// <summary>
-        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
-        /// </summary>
-        /// <param name="appId">The application ID of the LUIS application</param>
-        /// <param name="appKey">The application subscription key of the LUIS application</param>
-        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
-        /// <param name="domain">String to represent the domain of the endpoint</param>
-        /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain) { }
+	    /// <summary>
+	    /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+	    /// </summary>
+	    /// <param name="appId">The application ID of the LUIS application</param>
+	    /// <param name="appKey">The application subscription key of the LUIS application</param>
+	    /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
+	    /// <param name="domain">String to represent the domain of the endpoint</param>
+	    /// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
+	    public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN, bool? spellCheckOverride = null) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain, spellCheckOverride) { }
 
-        /// <summary>
-        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
-        /// </summary>
-        /// <param name="appId">The application ID of the LUIS application</param>
-        /// <param name="appKey">The application subscription key of the LUIS application</param>
-        /// <param name="baseApiUrl">Root URI for the service endpoint.</param>
-        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
-        /// top scoring in case of using the dialogue</param>
-        public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true, string domain = DEFAULT_DOMAIN)
+		/// <summary>
+		/// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+		/// </summary>
+		/// <param name="appId">The application ID of the LUIS application</param>
+		/// <param name="appKey">The application subscription key of the LUIS application</param>
+		/// <param name="baseApiUrl">Root URI for the service endpoint.</param>
+		/// <param name="verbose">A flag indicating whether to use verbose version or not</param>
+		/// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
+        public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true, string domain = DEFAULT_DOMAIN, bool? spellCheckOverride = null)
         {
             if (String.IsNullOrWhiteSpace(appId)) throw new ArgumentException(nameof(appId));
             if (String.IsNullOrWhiteSpace(appKey)) throw new ArgumentException(nameof(appKey));
@@ -100,6 +108,7 @@ namespace Microsoft.Cognitive.LUIS
             _appId = appId;
             _http = httpClient;
             _verbose = verbose;
+			_spellCheckOverride = spellCheckOverride;
         }
 
         /// <summary>
