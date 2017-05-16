@@ -49,7 +49,7 @@ namespace Microsoft.Cognitive.LUIS
     {
         private const string DEFAULT_DOMAIN = "westus";
         private const string DEFAULT_BASE_URI = "https://{0}.api.cognitive.microsoft.com/luis/v2.0/apps";
-        
+
         protected string BASE_API_URL { get; set; }
         private readonly HttpClient _http;
         private readonly string _appId;
@@ -66,35 +66,35 @@ namespace Microsoft.Cognitive.LUIS
         {
             if (String.IsNullOrWhiteSpace(id)) throw new ArgumentException(nameof(id));
 
-			string queryString = string.Join("&",
-				new[]
-				{
-					_verbose ? "verbose=true" : null,
-					_spellCheckOverride.HasValue ? $"spellCheck={_spellCheckOverride.ToString().ToLower()}" : null,
-					"q="
-				}.Where(s => s != null));
+            string queryString = string.Join("&",
+                new[]
+                {
+                    _verbose ? "verbose=true" : null,
+                    _spellCheckOverride.HasValue ? $"spellCheck={_spellCheckOverride.ToString().ToLower()}" : null,
+                    "q="
+                }.Where(s => s != null));
 
-			return $"{BASE_API_URL}/{id}?{queryString}";
+            return $"{BASE_API_URL}/{id}?{queryString}";
         }
 
-	    /// <summary>
-	    /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
-	    /// </summary>
-	    /// <param name="appId">The application ID of the LUIS application</param>
-	    /// <param name="appKey">The application subscription key of the LUIS application</param>
-	    /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
-	    /// <param name="domain">String to represent the domain of the endpoint</param>
-	    /// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
-	    public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN, bool? spellCheckOverride = null) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain, spellCheckOverride) { }
+        /// <summary>
+        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+        /// </summary>
+        /// <param name="appId">The application ID of the LUIS application</param>
+        /// <param name="appKey">The application subscription key of the LUIS application</param>
+        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
+        /// <param name="domain">String to represent the domain of the endpoint</param>
+        /// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
+        public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN, bool? spellCheckOverride = null) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain, spellCheckOverride) { }
 
-		/// <summary>
-		/// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
-		/// </summary>
-		/// <param name="appId">The application ID of the LUIS application</param>
-		/// <param name="appKey">The application subscription key of the LUIS application</param>
-		/// <param name="baseApiUrl">Root URI for the service endpoint.</param>
-		/// <param name="verbose">A flag indicating whether to use verbose version or not</param>
-		/// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
+        /// <summary>
+        /// Construct a new Luis client with a shared <see cref="HttpClient"/> instance.
+        /// </summary>
+        /// <param name="appId">The application ID of the LUIS application</param>
+        /// <param name="appKey">The application subscription key of the LUIS application</param>
+        /// <param name="baseApiUrl">Root URI for the service endpoint.</param>
+        /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
+        /// <param name="spellCheckOverride">True or False to override the default Luis spellCheck behavior</param>
         public LuisClient(string appId, string appKey, string baseApiUrl, bool verbose = true, string domain = DEFAULT_DOMAIN, bool? spellCheckOverride = null)
         {
             if (String.IsNullOrWhiteSpace(appId)) throw new ArgumentException(nameof(appId));
@@ -104,11 +104,11 @@ namespace Microsoft.Cognitive.LUIS
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", appKey);
             BASE_API_URL = string.Format(baseApiUrl, domain);
-            
+
             _appId = appId;
             _http = httpClient;
             _verbose = verbose;
-			_spellCheckOverride = spellCheckOverride;
+            _spellCheckOverride = spellCheckOverride;
         }
 
         /// <summary>
