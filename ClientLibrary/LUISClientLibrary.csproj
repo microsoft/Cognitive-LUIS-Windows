@@ -34,15 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IntentHandlerAttribute.cs" />
-    <Compile Include="IntentRouter.cs" />
+    <Compile Include="Structures\Apps\Application.cs" />
+    <Compile Include="Structures\Apps\Culture.cs" />
+    <Compile Include="Structures\IntentHandlerAttribute.cs" />
+    <Compile Include="Structures\IntentRouter.cs" />
+    <Compile Include="LuisManager.cs" />
     <Compile Include="Structures\Action.cs" />
+    <Compile Include="Structures\Apps\Apps.cs" />
     <Compile Include="Structures\CompositeEntity.cs" />
     <Compile Include="Structures\CompositeEntityChild.cs" />
     <Compile Include="Structures\Dialog.cs" />
     <Compile Include="Structures\DialogStatus.cs" />
     <Compile Include="Structures\Entity.cs" />
-    <Compile Include="HttpClientRestExtensions.cs" />
+    <Compile Include="Structures\Extensions\HttpClientRestExtensions.cs" />
+    <Compile Include="Structures\Examples\EntityLabel.cs" />
+    <Compile Include="Structures\Examples\Examples.cs" />
+    <Compile Include="Structures\Examples\Label.cs" />
+    <Compile Include="Structures\Examples\LabelRequest.cs" />
+    <Compile Include="Structures\Examples\PredictedLabel.cs" />
     <Compile Include="Structures\Intent.cs" />
     <Compile Include="LuisClient.cs" />
     <Compile Include="Structures\LuisResult.cs" />
