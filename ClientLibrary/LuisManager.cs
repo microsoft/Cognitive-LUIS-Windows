@@ -12,18 +12,17 @@ namespace Microsoft.Cognitive.LUIS
         private const string DEFAULT_DOMAIN = "westus";
         private const string DEFAULT_BASE_URI = "https://{0}.api.cognitive.microsoft.com/luis/api/v2.0";
 
-        private HttpClient _httpClient;
-       
-        public LuisManager(string programmaticAPIKey, string domain = DEFAULT_DOMAIN, string baseUri = DEFAULT_BASE_URI)
+        protected string BASE_API_URL { get; set; }
+
+
+        public LuisManager(string subscriptionKey, string domain = DEFAULT_DOMAIN, string baseUri = DEFAULT_BASE_URI)
         {
-            if (string.IsNullOrEmpty(programmaticAPIKey)) throw new ArgumentNullException(nameof(programmaticAPIKey));
+            if (string.IsNullOrEmpty(subscriptionKey)) throw new ArgumentNullException(nameof(subscriptionKey));
+            BASE_API_URL = string.Format(baseUri, domain);
 
-            _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", programmaticAPIKey);
-            _httpClient.BaseAddress = new Uri(string.Format(baseUri, domain));
-
-            Apps = new Apps(_httpClient);
+            Apps = new Apps(subscriptionKey, BASE_API_URL);
         }
+
 
         public Apps Apps { get; private set; }
     }

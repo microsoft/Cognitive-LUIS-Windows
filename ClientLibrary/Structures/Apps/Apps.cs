@@ -8,25 +8,15 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Cognitive.LUIS
 {
-    public class Apps
+    public class Apps:LuisHandler
     {
-        HttpClient _httpClient;
 
-        public Apps(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
-
-        private string CreateUri(string path)
-        {
-            if (String.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
-            return $"{_httpClient.BaseAddress.AbsoluteUri}/{path}";
-        }
-
-        public async Task<Guid> AddApplicationAsync(string name, string description = "", string culture = Culture.English)
+        public Apps(string subscriptionKey, string baseApiUrl) : base(subscriptionKey, baseApiUrl) { }
+              
+        public async Task<LuisApplication> AddApplicationAsync(string name, string description = "", string culture = Culture.English)
         {
             var path = "apps";
-            var uri = CreateUri(path);
+            var uri = CreateHandlerUri(path);
 
             var app = new Application()
             {
@@ -38,15 +28,22 @@ namespace Microsoft.Cognitive.LUIS
 
             var response = await responseMessage.Content.ReadAsStringAsync();
             if (responseMessage.IsSuccessStatusCode)
-                return new Guid(response.Replace("\"", ""));
+                return new LuisApplication(new Guid(response.Replace("\"", "")),_subscriptionKey);
             else
                 throw new HttpRequestException(response);
         }
 
+        public async Task<bool> DeleteApplicationAsync(string id)
+        {
+            return await DeleteApplicationAsync(new Guid(id));
+        }
+
         public async Task<bool> DeleteApplicationAsync(Guid id)
         {
+            if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
+
             var path = $"apps/{id}";
-            var uri = CreateUri(path);
+            var uri = CreateHandlerUri(path);
 
             var responseMessage = await _httpClient.DeleteAsync(uri);
 

@@ -62,11 +62,31 @@ namespace Microsoft.Cognitive.LUIS
             return JToken.Parse(body);
         }
 
-        public async static Task<HttpResponseMessage> RestPost(this HttpClient client, string uri, object request)
+        public async static Task<JToken> RestPut(this HttpClient client, string url, object request = null)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync(uri, content);
-            return responseMessage;
+            StringContent content = null;
+            if (request != null)
+                content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(url, content).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(body))
+                return null;
+            else
+                return JToken.Parse(body);
+        }
+
+        public async static Task<HttpResponseMessage> RestPost(this HttpClient client, string uri, object request = null)
+        {
+            StringContent content = null;
+            if (request != null)
+                content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(uri, content);
+            response.EnsureSuccessStatusCode();
+            return response;
         }
     }
 }
