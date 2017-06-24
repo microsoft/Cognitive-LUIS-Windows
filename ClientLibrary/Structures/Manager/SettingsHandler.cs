@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Cognitive.LUIS
+namespace Microsoft.Cognitive.LUIS.Manager
 {
     public class SettingsHandler : LuisHandler
     {
@@ -12,6 +9,8 @@ namespace Microsoft.Cognitive.LUIS
 
         public async Task AssignAppKey(string appKey, string versionId = DEFAULT_VERSION_ID)
         {
+            if (string.IsNullOrEmpty(appKey)) throw new ArgumentNullException(nameof(appKey));
+
             var uri = CreateHandlerUri($"api/v2.0/apps/{_appId}/versions/{versionId}/assignedkey");
             await _httpClient.RestPut(uri, appKey);
         }

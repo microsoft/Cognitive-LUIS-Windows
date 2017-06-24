@@ -56,37 +56,32 @@ namespace Microsoft.Cognitive.LUIS
         /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
         public async static Task<JToken> RestGet(this HttpClient client, string url)
         {
-            var response = await client.GetAsync(url).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JToken.Parse(body);
+            return await client.RestCall(HttpMethod.Get, url);
         }
 
         public async static Task<JToken> RestPut(this HttpClient client, string url, object request = null)
         {
-            StringContent content = null;
-            if (request != null)
-                content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-
-            var response = await client.PutAsync(url, content).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            if (string.IsNullOrEmpty(body))
-                return null;
-            else
-                return JToken.Parse(body);
+            return await client.RestCall(HttpMethod.Put, url, request);
         }
 
-        public async static Task<HttpResponseMessage> RestPost(this HttpClient client, string uri, object request = null)
+        public async static Task<JToken> RestPost(this HttpClient client, string url, object request = null)
         {
-            StringContent content = null;
-            if (request != null)
-                content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            return await client.RestCall(HttpMethod.Post,url,request);
+        }
 
-            var response = await client.PostAsync(uri, content);
+        private async static Task<JToken> RestCall(this HttpClient client, HttpMethod method, string url, object body = null)
+        {
+            var request = new HttpRequestMessage(method, url)
+            {
+                Content = (body != null) ? new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json") : null
+            };
+            var response = await client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return response;
+            var responseStr = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        if (string.IsNullOrEmpty(responseStr))
+                return null;
+            else
+                return JToken.Parse(responseStr);
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Cognitive.LUIS
+namespace Microsoft.Cognitive.LUIS.Manager
 {
     public class ExamplesHandler : LuisHandler
     {
@@ -13,6 +11,7 @@ namespace Microsoft.Cognitive.LUIS
 
         public ExamplesHandler(string appId, string subscriptionKey, string baseApiUrl, string intentName) : base(appId, subscriptionKey, baseApiUrl)
         {
+            if (string.IsNullOrEmpty(intentName)) throw new ArgumentNullException(nameof(intentName));
             _intentName = intentName;
         }
 
@@ -35,40 +34,29 @@ namespace Microsoft.Cognitive.LUIS
 
             var uri = CreateHandlerUri($"api/v2.0/apps/{_appId}/versions/{versionId}/example");
 
-            var responseMessage = await _httpClient.RestPost(uri, label);
-
-            var response = await responseMessage.Content.ReadAsStringAsync();
-            if (responseMessage.IsSuccessStatusCode)
-                return true;
-            else
-                throw new HttpRequestException(response);
+            var response = await _httpClient.RestPost(uri, label);
+            return true;
         }
 
-
-        public async Task<bool> AddLabelsAsync(IEnumerable<string> texts, string versionId = DEFAULT_VERSION_ID)
+        public async Task<bool> AddLabelsAsync(IEnumerable<string> labels, string versionId = DEFAULT_VERSION_ID)
         {
-            var labels = from text in texts
-                         select new LabelRequest()
-                         {
-                             IntentName = _intentName,
-                             Text = text
-                         };
-            return await AddLabelsAsync(labels, versionId);
+            var labelsRequest = from label in labels
+                                select new LabelRequest()
+                                {
+                                    IntentName = _intentName,
+                                    Text = label
+                                };
+            return await AddLabelsAsync(labelsRequest, versionId);
         }
 
         private async Task<bool> AddLabelsAsync(IEnumerable<LabelRequest> labels, string versionId = DEFAULT_VERSION_ID)
         {
-            if (labels == null) throw new ArgumentNullException(nameof(labels));
+            if (labels == null || labels.Count() == 0) throw new ArgumentNullException(nameof(labels));
 
             var uri = CreateHandlerUri($"api/v2.0/apps/{_appId}/versions/{versionId}/examples");
 
-            var responseMessage = await _httpClient.RestPost(uri, labels);
-
-            var response = await responseMessage.Content.ReadAsStringAsync();
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await _httpClient.RestPost(uri, labels);
                 return true;
-            else
-                throw new HttpRequestException(response);
         }
     }
 }

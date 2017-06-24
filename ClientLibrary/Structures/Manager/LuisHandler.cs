@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Microsoft.Cognitive.LUIS
+namespace Microsoft.Cognitive.LUIS.Manager
 {
     public abstract class LuisHandler
     {
         protected const string DEFAULT_VERSION_ID = "0.1";
 
         protected string _appId;
-        protected string _appKey;
         protected string _subscriptionKey;
         protected string _baseApiUrl;
 
@@ -21,6 +16,9 @@ namespace Microsoft.Cognitive.LUIS
         public LuisHandler(string subscriptionKey, string baseApiUrl) : this(string.Empty, subscriptionKey, baseApiUrl) { }
         public LuisHandler(string appId, string subscriptionKey, string baseApiUrl)
         {
+            if (string.IsNullOrEmpty(subscriptionKey)) throw new ArgumentNullException(nameof(subscriptionKey));
+            if (string.IsNullOrEmpty(baseApiUrl)) throw new ArgumentNullException(nameof(baseApiUrl));
+
             _appId = appId;
             _subscriptionKey = subscriptionKey;
             _baseApiUrl = baseApiUrl;

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Cognitive.LUIS.Manager;
+using System;
 
 namespace Microsoft.Cognitive.LUIS
 {
@@ -14,16 +10,16 @@ namespace Microsoft.Cognitive.LUIS
 
         protected string BASE_API_URL { get; set; }
 
+        public ApplicationHandler Apps { get; private set; }
 
         public LuisManager(string subscriptionKey, string domain = DEFAULT_DOMAIN, string baseUri = DEFAULT_BASE_URI)
         {
             if (string.IsNullOrEmpty(subscriptionKey)) throw new ArgumentNullException(nameof(subscriptionKey));
+
             BASE_API_URL = string.Format(baseUri, domain);
 
-            Apps = new Apps(subscriptionKey, BASE_API_URL);
+            Apps = new ApplicationHandler(subscriptionKey, BASE_API_URL);
         }
 
-
-        public Apps Apps { get; private set; }
     }
 }
