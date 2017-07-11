@@ -79,6 +79,7 @@ namespace Microsoft.Cognitive.LUIS
         /// <param name="appKey">The application subscription key of the LUIS application</param>
         /// <param name="verbose">A flag indicating whether to use verbose version or not</param>
         /// <param name="domain">String to represent the domain of the endpoint</param>
+        /// <param name="staging">A flag indicating whether to use the staging server vs production</param>
         /// top scoring in case of using the dialogue</param>
         public LuisClient(string appId, string appKey, bool verbose = true, string domain = DEFAULT_DOMAIN, bool staging = false) : this(appId, appKey, DEFAULT_BASE_URI, verbose, domain, staging) { }
 
