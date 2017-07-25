@@ -33,34 +33,20 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-using Newtonsoft.Json.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace Microsoft.Cognitive.LUIS
+namespace Microsoft.Cognitive.LUIS.Manager
 {
     /// <summary>
-    /// Utility extensions to streamline working with a REST API.
+    /// Culture language used in LUIS model.
     /// </summary>
-    public static class HttpClientRestExtensions
+    public class Culture
     {
-        /// <summary>
-        /// Sends a GET request to the server and parses the response a JSON.
-        /// </summary>
-        /// <param name="client">HttpClient to send the request using.</param>
-        /// <param name="url">URL of the API to make the request to.</param>
-        /// <returns>JObject containing the parsed response.</returns>
-        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
-        public async static Task<JToken> RestGet(this HttpClient client, string url)
-        {
-            var response = await client.GetAsync(url).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JToken.Parse(body);
-        }
+        public const string English = "en-us";
+        public const string Chinese = "zh-cn";
+        public const string French = "fr-fr";
+        public const string Spanish = "es-es";
+        public const string Italian = "it-it";
+        public const string German = "de-de";
+        public const string Japanese = "ja-jp";
+        public const string BRPortuguese = "pt-br";
     }
 }
-
-
-

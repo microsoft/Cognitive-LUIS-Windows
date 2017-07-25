@@ -48,7 +48,7 @@ namespace Microsoft.Cognitive.LUIS
     {
         private const string DEFAULT_DOMAIN = "westus";
         private const string DEFAULT_BASE_URI = "https://{0}.api.cognitive.microsoft.com/luis/v2.0/apps";
-        
+
         protected string BASE_API_URL { get; set; }
         private readonly HttpClient _http;
         private readonly string _appId;
@@ -58,7 +58,6 @@ namespace Microsoft.Cognitive.LUIS
         /// Generates an API URI using the provided id and key for a registered LUIS application.
         /// </summary>
         /// <param name="id">Application id</param>
-        /// <param name="subscriptionKey">Application key</param>
         /// <returns>Application URL for <see cref="LuisClient"/></returns>
         private string CreateApplicationUri(string id)
         {
@@ -96,7 +95,7 @@ namespace Microsoft.Cognitive.LUIS
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("OCP-APIM-Subscription-Key", appKey);
             BASE_API_URL = string.Format(baseApiUrl, domain);
-            
+
             _appId = appId;
             _http = httpClient;
             _verbose = verbose;

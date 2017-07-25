@@ -128,10 +128,6 @@
       <Project>{43daa109-ef1b-4c29-b231-9cfc88142446}</Project>
       <Name>LUISClientLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cognitive-Common-Windows\SampleUserControlLibrary\SampleUserControlLibrary.csproj">
-      <Project>{735929f0-f8f1-4d93-b027-5d034fa7892b}</Project>
-      <Name>SampleUserControlLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

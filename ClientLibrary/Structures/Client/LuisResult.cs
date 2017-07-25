@@ -36,6 +36,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Microsoft.Cognitive.LUIS
 {
@@ -43,6 +44,7 @@ namespace Microsoft.Cognitive.LUIS
     /// <summary>
     /// Reresents the results of a natural langage string parse by the LUIS service.
     /// </summary>
+    [DebuggerDisplay("TopScoringIntent: {TopScoringIntent.Name}")]
     public class LuisResult
     {
         public Func<string, LuisResult> Reply { get; }
