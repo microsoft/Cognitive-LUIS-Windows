@@ -47,28 +47,67 @@ namespace Microsoft.Cognitive.LUIS
     /// </summary>
     public static class HttpClientRestExtensions
     {
+
         /// <summary>
         /// Sends a GET request to the server and parses the response a JSON.
         /// </summary>
-        /// <param name="client">HttpClient to send the request using.</param>
+        /// <param name="client"><seealso cref="HttpClient"/> to send the request using it.</param>
         /// <param name="url">URL of the API to make the request to.</param>
         /// <returns>JObject containing the parsed response.</returns>
-        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
         public async static Task<JToken> RestGet(this HttpClient client, string url)
         {
             return await client.RestCall(HttpMethod.Get, url);
         }
 
-        public async static Task<JToken> RestPut(this HttpClient client, string url, object request = null)
+        /// <summary>
+        /// Sends a PUT request to the server and parses the response a JSON.
+        /// </summary>
+        /// <param name="client"><seealso cref="HttpClient"/> to send the request using it.</param>
+        /// <param name="url">URL of the API to make the request to.</param>
+        /// <param name="body">Optional body request.</param>
+        /// <returns>JObject containing the parsed response.</returns>
+        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
+        public async static Task<JToken> RestPut(this HttpClient client, string url, object body = null)
         {
-            return await client.RestCall(HttpMethod.Put, url, request);
+            return await client.RestCall(HttpMethod.Put, url, body);
         }
 
-        public async static Task<JToken> RestPost(this HttpClient client, string url, object request = null)
+        /// <summary>
+        /// Sends a POST request to the server and parses the response a JSON.
+        /// </summary>
+        /// <param name="client"><seealso cref="HttpClient"/> to send the request using it.</param>
+        /// <param name="url">URL of the API to make the request to.</param>
+        /// <param name="body">Optional body request.</param>
+        /// <returns>JObject containing the parsed response.</returns>
+        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
+
+        public async static Task<JToken> RestPost(this HttpClient client, string url, object body = null)
         {
-            return await client.RestCall(HttpMethod.Post,url,request);
+            return await client.RestCall(HttpMethod.Post, url, body);
         }
 
+        /// <summary>
+        /// Sends a DELETE request to the server and parses the response a JSON.
+        /// </summary>
+        /// <param name="client"><seealso cref="HttpClient"/> to send the request using it.</param>
+        /// <param name="url">URL of the API to make the request to.</param>
+        /// <param name="body">Optional body request.</param>
+        /// <returns>JObject containing the parsed response.</returns>
+        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
+        public async static Task<JToken> RestDelete(this HttpClient client, string url, object body = null)
+        {
+            return await client.RestCall(HttpMethod.Delete, url, body);
+        }
+
+        /// <summary>
+        /// Sends a HTTP request to the server and parses the response a JSON.
+        /// </summary>
+        /// <param name="client"><seealso cref="HttpClient"/> to send the request using it.</param>
+        /// <param name="method">HTTP method used in request.</param>
+        /// <param name="url">URL of the API to make the request to.</param>
+        /// <param name="body">Optional body request.</param>
+        /// <returns>JObject containing the parsed response.</returns>
+        /// <exception cref="System.Net.Http.HttpRequestException">Thrown if a non-success result is returned from the server.</exception>
         private async static Task<JToken> RestCall(this HttpClient client, HttpMethod method, string url, object body = null)
         {
             var request = new HttpRequestMessage(method, url)
@@ -78,7 +117,7 @@ namespace Microsoft.Cognitive.LUIS
             var response = await client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var responseStr = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        if (string.IsNullOrEmpty(responseStr))
+            if (string.IsNullOrEmpty(responseStr))
                 return null;
             else
                 return JToken.Parse(responseStr);

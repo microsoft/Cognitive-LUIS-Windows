@@ -57,7 +57,7 @@
     <Compile Include="Structures\Client\Intent.cs" />
     <Compile Include="LuisClient.cs" />
     <Compile Include="Structures\Client\LuisResult.cs" />
-    <Compile Include="Structures\Manager\IntentionsHandler.cs" />
+    <Compile Include="Structures\Manager\IntentHandler.cs" />
     <Compile Include="Structures\Client\Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structures\Client\ParameterValue.cs" />

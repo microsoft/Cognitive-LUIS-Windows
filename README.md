@@ -12,16 +12,47 @@ Please note that the repo depends on a submodule, so in order to clone it you'll
 
 The SDK
 --------------
-The SDK can be used in 2 different ways (both are shown in the sample).
+The SDK can be used in 3 different ways (both are shown in the sample).
 - one way to use it is to use the client directly and call the functions "Predict" and "reply" that are present in the "LuisClient".
 - another way is to create handlers for each intent (as shown in the sample) and setup a router using these handlers in order to have the router handle the responses instead of doing so within the client application.
+- the third way is used to manage a LUIS subscription, handling the life cycle of intents, examples, training and settings.
 
 Sample Application
 --------------
-The sample application allows you to try three different modes.
+The sample application allows you to try prediction in three different modes.
 - Mode 1: Perform the Predict and Reply actions using LuisClient directly operations and to view the following parts of the parsed response: Query, Top Intent, Dialog prompt/status, Entities
 - Mode 2: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contains normal functions
 - Mode 3: Perform the Predict action function using the IntentRouter class and an IntentHandlers class that contain static functions
+
+The console sample application also shows how to manage a LUIS subscription. Example:
+
+
+```cs
+var manager = new LuisManager(subscriptionKey);
+
+var application = await manager.Apps.CreateApplicationAsync("MyApp");
+
+var intent = await application.Intent.AddIntentAsync("Intention.Example");
+
+await intent.Examples.AddLabelAsync("This is an example");
+await intent.Examples.AddLabelsAsync(new List<string>()
+{
+    "This is other example",
+    "Here is another example",
+    "What about this example?"
+});
+
+var source = new CancellationTokenSource();
+await application.Training.TrainAsync(source.Token);
+
+await application.Settings.AssignAppKey(appKey);
+await application.Settings.PublishAsync();
+
+var client = new LuisClient(application.Id, appKey);
+var result = await client.Predict("An example");
+
+await manager.Apps.DeleteApplicationAsync(application.Id);
+```
 
 Intent Router and Handlers mode
 --------------

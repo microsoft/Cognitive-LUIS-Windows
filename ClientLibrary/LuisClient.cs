@@ -58,7 +58,6 @@ namespace Microsoft.Cognitive.LUIS
         /// Generates an API URI using the provided id and key for a registered LUIS application.
         /// </summary>
         /// <param name="id">Application id</param>
-        /// <param name="subscriptionKey">Application key</param>
         /// <returns>Application URL for <see cref="LuisClient"/></returns>
         private string CreateApplicationUri(string id)
         {
