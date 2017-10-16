@@ -50,7 +50,13 @@ namespace Microsoft.Cognitive.LUIS
         /// <summary>
         /// Original text sent to the LUIS service for parsing.
         /// </summary>
-        public string OriginalQuery { get; set; }
+        public string OriginalQuery { get; set; }        
+
+        /// <summary>
+        /// Original text that has been spell-corrected with Luis-Bing integration.
+        /// </summary>
+        /// <remarks>Only has a value if the original query was changed.</remarks>
+        public string AlteredQuery { get; set; }
 
         /// <summary>
         /// The best matching intent in this result set.
@@ -113,6 +119,7 @@ namespace Microsoft.Cognitive.LUIS
             if (result == null) throw new ArgumentNullException(nameof(result));
 
             OriginalQuery = (string)result["query"] ?? string.Empty;
+            AlteredQuery = (string)result["alteredQuery"] ?? string.Empty;
             var intents = (JArray)result["intents"] ?? new JArray();
             TopScoringIntent = new Intent();
             TopScoringIntent.Load((JObject)result["topScoringIntent"]);
@@ -187,20 +194,19 @@ namespace Microsoft.Cognitive.LUIS
             return a;
         }
 
-        /// <summary>
-        /// Parses a json array of entities into an entity dictionary.
-        /// </summary>
-        /// <param name="array"></param>
-        /// <returns>The object containing the dictionary of entities</returns>
-        private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary(JArray array)
+        private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary (JArray array)
         {
-            var count = array.Count;
             var dict = new Dictionary<string, IList<Entity>>();
 
             foreach (var item in array)
             {
                 var e = new Entity();
-                e.Load((JObject)item);
+                e.Load((JObject) item);
+
+                if (ShouldIgnoreEntity(e))
+                {
+                    continue;
+                }
 
                 IList<Entity> entityList;
                 if (!dict.TryGetValue(e.Name, out entityList))
@@ -212,8 +218,38 @@ namespace Microsoft.Cognitive.LUIS
                     entityList.Add(e);
                 }
             }
-
             return dict;
+        }
+
+        private bool ShouldIgnoreEntity (Entity e)
+        {
+            //Luis sometimes returns entities with "type" equal to null (mapped to "Name").
+            //  Ignore these kinds of entities.
+            //  For example (note how the first two entities 'add up' to the last one):
+            //    "entities": [
+            //    {
+            //        "entity": "opportunity",
+            //        "type": null,
+            //        "startIndex": 18,
+            //        "endIndex": 28,
+            //        "score": 0.179574952
+            //    },
+            //    {
+            //        "entity": "fund",
+            //        "type": null,
+            //        "startIndex": 30,
+            //        "endIndex": 33,
+            //        "score": 0.164282173
+            //    },
+            //    {
+            //        "entity": "opportunity fund",
+            //        "type": "Fund",
+            //        "startIndex": 18,
+            //        "endIndex": 33,
+            //        "score": 0.996879935
+            //    }
+            //]
+            return e.Name == null;
         }
 
         /// <summary>
