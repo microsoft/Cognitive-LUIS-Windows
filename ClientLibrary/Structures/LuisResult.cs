@@ -187,14 +187,19 @@ namespace Microsoft.Cognitive.LUIS
             return a;
         }
 
-        private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary (JArray array)
+        /// <summary>
+        /// Parses a json array of entities into an entity dictionary.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns>The object containing the dictionary of entities</returns>
+        private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary(JArray array)
         {
             var dict = new Dictionary<string, IList<Entity>>();
 
             foreach (var item in array)
             {
                 var e = new Entity();
-                e.Load((JObject) item);
+                e.Load((JObject)item);
 
                 if (ShouldIgnoreEntity(e))
                 {
