@@ -194,13 +194,17 @@ namespace Microsoft.Cognitive.LUIS
         /// <returns>The object containing the dictionary of entities</returns>
         private IDictionary<string, IList<Entity>> ParseEntityArrayToDictionary(JArray array)
         {
-            var count = array.Count;
             var dict = new Dictionary<string, IList<Entity>>();
 
             foreach (var item in array)
             {
                 var e = new Entity();
                 e.Load((JObject)item);
+
+                if (ShouldIgnoreEntity(e))
+                {
+                    continue;
+                }
 
                 IList<Entity> entityList;
                 if (!dict.TryGetValue(e.Name, out entityList))
@@ -212,8 +216,38 @@ namespace Microsoft.Cognitive.LUIS
                     entityList.Add(e);
                 }
             }
-
             return dict;
+        }
+
+        private bool ShouldIgnoreEntity (Entity e)
+        {
+            //Luis sometimes returns entities with "type" equal to null (mapped to "Name").
+            //  Ignore these kinds of entities.
+            //  For example (note how the first two entities 'add up' to the last one):
+            //    "entities": [
+            //    {
+            //        "entity": "opportunity",
+            //        "type": null,
+            //        "startIndex": 18,
+            //        "endIndex": 28,
+            //        "score": 0.179574952
+            //    },
+            //    {
+            //        "entity": "fund",
+            //        "type": null,
+            //        "startIndex": 30,
+            //        "endIndex": 33,
+            //        "score": 0.164282173
+            //    },
+            //    {
+            //        "entity": "opportunity fund",
+            //        "type": "Fund",
+            //        "startIndex": 18,
+            //        "endIndex": 33,
+            //        "score": 0.996879935
+            //    }
+            //]
+            return e.Name == null;
         }
 
         /// <summary>
