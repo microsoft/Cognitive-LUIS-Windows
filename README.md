@@ -1,4 +1,7 @@
-﻿LUIS
+# This SDK is being deprecated and is no longer maintained. 
+# Please go [here](https://github.com/Azure/azure-sdk-for-net/tree/psSdkJson6/src/SDKs/CognitiveServices/dataPlane/Language/LUIS) for the latest .NET SDK.
+ 
+ LUIS
 ==============
 LUIS is a service for language understanding that provides intent classification and entity extraction.
 In order to use the SDK you first need to create and publish an app on www.luis.ai where you will get your Application Id and Subscription Key.
