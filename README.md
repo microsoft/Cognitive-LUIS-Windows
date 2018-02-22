@@ -1,5 +1,4 @@
-# This SDK is being deprecated and is no longer maintained. 
-# Please go [here](https://github.com/Azure/azure-sdk-for-net/tree/psSdkJson6/src/SDKs/CognitiveServices/dataPlane/Language/LUIS) for the latest .NET SDK.
+# This SDK is being deprecated and is no longer maintained. Please go [here](https://github.com/Azure/azure-sdk-for-net/tree/psSdkJson6/src/SDKs/CognitiveServices/dataPlane/Language/LUIS) for the latest .NET SDK.
  
  LUIS
 ==============
