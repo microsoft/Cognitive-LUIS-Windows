@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Provides API functions for consuming the Microsoft Azure Cognitive Services LUIS Programmatic API.</description>
+    <licenseUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows</projectUrl>
+    <iconUrl>https://docs.microsoft.com/en-us/azure/cognitive-services/luis/media/index/logo_luis.svg</iconUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Microsoft Cognitive Services;Cognitive Services;Cognitive Services SDK;LUIS;Language Understanding Intelligent Service;Language Understanding;REST HTTP client;netstandard2.0</tags>
+    <dependencies>
+      <dependency id="Microsoft.Rest.ClientRuntime" version="2.3.10" />
+      <dependency id="Microsoft.Rest.ClientRuntime.Azure" version="3.3.10"/>
+      <dependency id="System.Net.Http" version="4.3.3"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\build\package\net452\Microsoft.Rest.ClientRuntime.dll" target="lib\net452"/>
+    <file src="..\build\package\net452\Microsoft.Rest.ClientRuntime.Azure.dll" target="lib\net452"/>
+    <file src="..\build\package\net452\Newtonsoft.Json.dll" target="lib\net452"/>
+    <file src="..\build\package\net452\Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.dll" target="lib\net452"/>
+    <file src="..\build\package\netstandard2.0\Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.dll" target="lib\netstandard2.0"/>
+    <file src="**\*.cs" exclude="**\obj\**\*.cs" target="src" />
+  </files>
+</package>

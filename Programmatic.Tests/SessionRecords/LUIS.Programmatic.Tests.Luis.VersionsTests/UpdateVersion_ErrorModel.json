@@ -1,0 +1,122 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions?skip=0&take=100",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[\r\n  {\r\n    \"version\": \"0.1\",\r\n    \"createdDateTime\": \"2017-12-22T18:04:34Z\",\r\n    \"lastModifiedDateTime\": \"2018-02-27T18:20:15Z\",\r\n    \"lastTrainedDateTime\": \"2018-02-27T18:21:15Z\",\r\n    \"lastPublishedDateTime\": \"2018-02-27T13:08:20Z\",\r\n    \"endpointUrl\": null,\r\n    \"assignedEndpointKey\": null,\r\n    \"externalApiKeys\": null,\r\n    \"intentsCount\": 8,\r\n    \"entitiesCount\": 6,\r\n    \"endpointHitsCount\": 0,\r\n    \"trainingStatus\": \"Trained\"\r\n  },\r\n  {\r\n    \"version\": \"0.2.778\",\r\n    \"createdDateTime\": \"2017-12-22T18:06:02Z\",\r\n    \"lastModifiedDateTime\": \"2017-12-22T18:13:31Z\",\r\n    \"lastTrainedDateTime\": \"2017-12-22T18:06:06Z\",\r\n    \"lastPublishedDateTime\": \"2017-12-22T18:13:32Z\",\r\n    \"endpointUrl\": null,\r\n    \"assignedEndpointKey\": null,\r\n    \"externalApiKeys\": null,\r\n    \"intentsCount\": 3,\r\n    \"entitiesCount\": 0,\r\n    \"endpointHitsCount\": 0,\r\n    \"trainingStatus\": \"Trained\"\r\n  }\r\n]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "705"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:58 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "14325305-bb98-4e61-a13f-16dc9b01f0da"
+        ],
+        "Request-Id": [
+          "14325305-bb98-4e61-a13f-16dc9b01f0da"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/",
+
+      "RequestMethod": "PUT",
+      "RequestBody": "{\r\n  \"version\": \"\"\r\n}",
+      "RequestHeaders": {
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Content-Length": [
+          "21"
+        ],
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "{\r\n  \"error\": {\r\n    \"code\": \"BadArgument\",\r\n    \"message\": \"newVersionId cannot be null or empty.\"\r\n  }\r\n}",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "107"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:59 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "2c4d2c09-9904-4d8f-a739-3d26c23ac53d"
+        ],
+        "Request-Id": [
+          "2c4d2c09-9904-4d8f-a739-3d26c23ac53d"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 400
+    }
+  ],
+  "Names": {},
+  "Variables": {}
+}

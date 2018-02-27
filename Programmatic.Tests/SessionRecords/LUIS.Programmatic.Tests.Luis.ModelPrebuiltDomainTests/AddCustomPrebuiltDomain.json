@@ -1,0 +1,177 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions?skip=0&take=100",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[\r\n  {\r\n    \"version\": \"0.1\",\r\n    \"createdDateTime\": \"2017-12-22T18:04:34Z\",\r\n    \"lastModifiedDateTime\": \"2018-02-27T18:19:08Z\",\r\n    \"lastTrainedDateTime\": null,\r\n    \"lastPublishedDateTime\": \"2018-02-27T13:08:20Z\",\r\n    \"endpointUrl\": null,\r\n    \"assignedEndpointKey\": null,\r\n    \"externalApiKeys\": null,\r\n    \"intentsCount\": 12,\r\n    \"entitiesCount\": 7,\r\n    \"endpointHitsCount\": 0,\r\n    \"trainingStatus\": \"NeedsTraining\"\r\n  },\r\n  {\r\n    \"version\": \"0.2.778\",\r\n    \"createdDateTime\": \"2017-12-22T18:06:02Z\",\r\n    \"lastModifiedDateTime\": \"2017-12-22T18:13:31Z\",\r\n    \"lastTrainedDateTime\": \"2017-12-22T18:06:06Z\",\r\n    \"lastPublishedDateTime\": \"2017-12-22T18:13:32Z\",\r\n    \"endpointUrl\": null,\r\n    \"assignedEndpointKey\": null,\r\n    \"externalApiKeys\": null,\r\n    \"intentsCount\": 3,\r\n    \"entitiesCount\": 0,\r\n    \"endpointHitsCount\": 0,\r\n    \"trainingStatus\": \"Trained\"\r\n  }\r\n]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "694"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:19:12 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "03603f11-6807-4d14-a354-5283f9de3e63"
+        ],
+        "Request-Id": [
+          "03603f11-6807-4d14-a354-5283f9de3e63"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/customprebuiltdomains",
+
+      "RequestMethod": "POST",
+      "RequestBody": "{\r\n  \"domainName\": \"Gaming\"\r\n}",
+      "RequestHeaders": {
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Content-Length": [
+          "30"
+        ],
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "2"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:19:12 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "a7543e86-c71f-4dc2-a1f0-175a95a6f49a"
+        ],
+        "Request-Id": [
+          "a7543e86-c71f-4dc2-a1f0-175a95a6f49a"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 201
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/customprebuiltmodels",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "{\r\n  \"Result\": [\r\n    {\r\n      \"id\": \"b70e5e2e-1cbf-4b28-a73d-049b1dd562ff\",\r\n      \"name\": \"Calendar.Delete\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Delete\"\r\n    },\r\n    {\r\n      \"id\": \"21f3a5e6-b83e-4981-b79d-123847c5eff2\",\r\n      \"name\": \"Calendar.Edit\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Edit\"\r\n    },\r\n    {\r\n      \"id\": \"3b9e2638-dc65-42b3-9242-21bdc36481da\",\r\n      \"name\": \"Calendar.CheckAvailability\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"CheckAvailability\"\r\n    },\r\n    {\r\n      \"id\": \"ea753270-4cb3-4933-9e2b-522796050724\",\r\n      \"name\": \"Gaming.LeaveParty\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Gaming\",\r\n      \"customPrebuiltModelName\": \"LeaveParty\"\r\n    },\r\n    {\r\n      \"id\": \"05d0d905-69d6-44f6-a934-6e4b510239c7\",\r\n      \"name\": \"Calendar.Location\",\r\n      \"typeId\": 1,\r\n      \"readableType\": \"Entity Extractor\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Location\"\r\n    },\r\n    {\r\n      \"id\": \"8071a719-48d3-47bd-96b3-80a26128d830\",\r\n      \"name\": \"Calendar.Subject\",\r\n      \"typeId\": 1,\r\n      \"readableType\": \"Entity Extractor\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Subject\"\r\n    },\r\n    {\r\n      \"id\": \"c0314824-f8fe-4560-af32-81987a4e911b\",\r\n      \"name\": \"Calendar.Find\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Find\"\r\n    },\r\n    {\r\n      \"id\": \"ab347de9-523c-42bc-8265-8bc88c95a1b6\",\r\n      \"name\": \"Gaming.Contact\",\r\n      \"typeId\": 1,\r\n      \"readableType\": \"Entity Extractor\",\r\n      \"customPrebuiltDomainName\": \"Gaming\",\r\n      \"customPrebuiltModelName\": \"Contact\"\r\n    },\r\n    {\r\n      \"id\": \"d6b1a14a-8b32-4ffa-923d-9135898ce9af\",\r\n      \"name\": \"Gaming.StartParty\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Gaming\",\r\n      \"customPrebuiltModelName\": \"StartParty\"\r\n    },\r\n    {\r\n      \"id\": \"c1a54153-7b4f-4012-8202-b94ce923c909\",\r\n      \"name\": \"Camera.AppName\",\r\n      \"typeId\": 1,\r\n      \"readableType\": \"Entity Extractor\",\r\n      \"customPrebuiltDomainName\": \"Camera\",\r\n      \"customPrebuiltModelName\": \"AppName\"\r\n    },\r\n    {\r\n      \"id\": \"ed438ec9-3952-4441-8e22-bc063030566d\",\r\n      \"name\": \"Calendar.Add\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Calendar\",\r\n      \"customPrebuiltModelName\": \"Add\"\r\n    },\r\n    {\r\n      \"id\": \"42699fcf-35fa-4a80-a1a9-e266fd72325a\",\r\n      \"name\": \"Gaming.InviteParty\",\r\n      \"typeId\": 0,\r\n      \"readableType\": \"Intent Classifier\",\r\n      \"customPrebuiltDomainName\": \"Gaming\",\r\n      \"customPrebuiltModelName\": \"InviteParty\"\r\n    }\r\n  ],\r\n  \"Id\": 76967457,\r\n  \"Exception\": null,\r\n  \"Status\": 5,\r\n  \"IsCanceled\": false,\r\n  \"IsCompleted\": true,\r\n  \"CreationOptions\": 0,\r\n  \"AsyncState\": null,\r\n  \"IsFaulted\": false\r\n}",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "2448"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:19:12 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "82fbd789-fa65-4e9c-9551-8981e9d41df6"
+        ],
+        "Request-Id": [
+          "82fbd789-fa65-4e9c-9551-8981e9d41df6"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    }
+  ],
+  "Names": {},
+  "Variables": {}
+}

@@ -1,0 +1,293 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train",
+
+      "RequestMethod": "POST",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "{\r\n  \"statusId\": 9,\r\n  \"status\": \"Queued\"\r\n}",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "32"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:13 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Location": [
+          "https://westus.api.cognitive.microsoft.com/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train/"
+        ],
+        "Apim-Request-Id": [
+          "e009f0ca-f275-4757-b954-d40c4f248607"
+        ],
+        "Request-Id": [
+          "e009f0ca-f275-4757-b954-d40c4f248607"
+        ],
+        "Operation-Location": [
+          "https://westus.api.cognitive.microsoft.com/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train/"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 202
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train",
+
+      "RequestMethod": "POST",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "{\r\n  \"statusId\": 2,\r\n  \"status\": \"UpToDate\"\r\n}",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "34"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:17 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Location": [
+          "https://westus.api.cognitive.microsoft.com/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train/"
+        ],
+        "Apim-Request-Id": [
+          "891d5722-4d43-4585-b6da-b95dd7225316"
+        ],
+        "Request-Id": [
+          "891d5722-4d43-4585-b6da-b95dd7225316"
+        ],
+        "Operation-Location": [
+          "https://westus.api.cognitive.microsoft.com/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train/"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 202
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[\r\n  {\r\n    \"modelId\": \"3b9e2638-dc65-42b3-9242-21bdc36481da\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"b70e5e2e-1cbf-4b28-a73d-049b1dd562ff\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"21f3a5e6-b83e-4981-b79d-123847c5eff2\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"c0314824-f8fe-4560-af32-81987a4e911b\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"0e664683-1f06-4ede-82e5-3f5ad2412269\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"afd47c2f-ebb8-495d-92c2-4010bed1bdb8\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8d520d7e-f1b0-4af3-a177-3ac1f4ddad07\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"91143603-30e8-4393-81b2-66d2368193a3\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"05d0d905-69d6-44f6-a934-6e4b510239c7\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8071a719-48d3-47bd-96b3-80a26128d830\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"97c175ea-2fb6-41e5-b235-5c095ebcc2f4\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"f01f53b4-6919-45ff-beef-dfa4e4a0b253\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  }\r\n]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "1405"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:14 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "6b638807-bdee-44be-a9b2-82d11a557097"
+        ],
+        "Request-Id": [
+          "6b638807-bdee-44be-a9b2-82d11a557097"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[\r\n  {\r\n    \"modelId\": \"3b9e2638-dc65-42b3-9242-21bdc36481da\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"b70e5e2e-1cbf-4b28-a73d-049b1dd562ff\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"21f3a5e6-b83e-4981-b79d-123847c5eff2\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"c0314824-f8fe-4560-af32-81987a4e911b\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"0e664683-1f06-4ede-82e5-3f5ad2412269\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"afd47c2f-ebb8-495d-92c2-4010bed1bdb8\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8d520d7e-f1b0-4af3-a177-3ac1f4ddad07\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"91143603-30e8-4393-81b2-66d2368193a3\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"05d0d905-69d6-44f6-a934-6e4b510239c7\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8071a719-48d3-47bd-96b3-80a26128d830\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"97c175ea-2fb6-41e5-b235-5c095ebcc2f4\",\r\n    \"details\": {\r\n      \"statusId\": 3,\r\n      \"status\": \"InProgress\",\r\n      \"exampleCount\": 122\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"f01f53b4-6919-45ff-beef-dfa4e4a0b253\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  }\r\n]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "1795"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:15 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "2ba8d05a-2c1c-4d93-95fe-d7e5fd4bc71f"
+        ],
+        "Request-Id": [
+          "2ba8d05a-2c1c-4d93-95fe-d7e5fd4bc71f"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    },
+    {
+      "RequestUri": "/luis/api/v2.0/apps/86226c53-b7a6-416f-876b-226b2b5ab07b/versions/0.1/train",
+
+      "RequestMethod": "GET",
+      "RequestBody": "",
+      "RequestHeaders": {
+        "Ocp-Apim-Subscription-Key": [
+          "00000000000000000000000000000000"
+        ],
+        "User-Agent": [
+          "FxVersion/4.6.26020.03",
+          "Microsoft.Azure.CognitiveServices.Language.LUIS.Programmatic.LuisProgrammaticAPI/2.0.0.0"
+        ]
+      },
+      "ResponseBody": "[\r\n  {\r\n    \"modelId\": \"3b9e2638-dc65-42b3-9242-21bdc36481da\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"b70e5e2e-1cbf-4b28-a73d-049b1dd562ff\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"21f3a5e6-b83e-4981-b79d-123847c5eff2\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"c0314824-f8fe-4560-af32-81987a4e911b\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"0e664683-1f06-4ede-82e5-3f5ad2412269\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"afd47c2f-ebb8-495d-92c2-4010bed1bdb8\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8d520d7e-f1b0-4af3-a177-3ac1f4ddad07\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"91143603-30e8-4393-81b2-66d2368193a3\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:14Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"05d0d905-69d6-44f6-a934-6e4b510239c7\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"8071a719-48d3-47bd-96b3-80a26128d830\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"97c175ea-2fb6-41e5-b235-5c095ebcc2f4\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  },\r\n  {\r\n    \"modelId\": \"f01f53b4-6919-45ff-beef-dfa4e4a0b253\",\r\n    \"details\": {\r\n      \"statusId\": 0,\r\n      \"status\": \"Success\",\r\n      \"exampleCount\": 122,\r\n      \"trainingDateTime\": \"2018-02-27T18:21:15Z\"\r\n    }\r\n  }\r\n]",
+      "ResponseHeaders": {
+        "Content-Length": [
+          "1873"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Cache-Control": [
+          "no-store, proxy-revalidate, no-cache, max-age=0, private"
+        ],
+        "Date": [
+          "Tue, 27 Feb 2018 18:21:17 GMT"
+        ],
+        "Pragma": [
+          "no-cache"
+        ],
+        "Apim-Request-Id": [
+          "5ae8c92a-48a3-47ed-9199-28efb2dbff3b"
+        ],
+        "Request-Id": [
+          "5ae8c92a-48a3-47ed-9199-28efb2dbff3b"
+        ],
+        "Request-Context": [
+          "appId=cid-v1:26a3540d-a02a-4998-a060-715488fd769b"
+        ],
+        "X-Content-Type-Options": [
+          "nosniff"
+        ],
+        "X-Frame-Options": [
+          "SAMEORIGIN"
+        ],
+        "X-Powered-By": [
+          "ASP.NET"
+        ],
+        "Strict-Transport-Security": [
+          "max-age=31536000; includeSubDomains; preload"
+        ]
+      },
+      "StatusCode": 200
+    }
+  ],
+  "Names": {},
+  "Variables": {}
+}
