@@ -99,6 +99,16 @@ namespace Microsoft.Cognitive.LUIS
         [Obsolete("Action binding in LUIS should be replaced with code.")]
         public string ForceSet { get; set; }
 
+
+
+        /// <summary>
+        /// Constructs an instance of the LuisReqeuest.
+        /// </summary>
+        public LuisRequest() : this(string.Empty)
+        {
+        }
+
+
         /// <summary>
         /// Constructs an instance of the LuisReqeuest.
         /// </summary>
