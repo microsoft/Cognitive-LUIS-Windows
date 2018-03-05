@@ -2,14 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Microsoft.Cognitive.LUIS</PackageId>
     <Version>3.0.0</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Summary>Runtime Client SDK for LUIS.ai</Summary>
     <Description>Runtime Client SDK for LUIS.ai</Description>
-    <Copyright>Microsoft</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>Microsoft</Company>
+    <Authors>microsoft,ProjectOxfordSDK</Authors>
+    <Product>Microsoft Cognitive Services LUIS Client Library</Product>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows</PackageProjectUrl>
+    <PackageIconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows</RepositoryUrl>
+    <LicenseUrl>https://github.com/Microsoft/Cognitive-LUIS-Windows/blob/master/LICENSE.md</LicenseUrl>
+    <RepositoryType />
+    <PackageTags>microsoft cognitive services luis</PackageTags>
+    <NeutralLanguage />
   </PropertyGroup>
 
   <ItemGroup>
